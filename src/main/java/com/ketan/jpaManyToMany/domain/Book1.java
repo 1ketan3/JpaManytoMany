@@ -19,12 +19,12 @@ public class Book1
 
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-   // @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JsonBackReference
     @JoinTable(name = "book1_publisher", joinColumns = @JoinColumn(name = "book1_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "publisher_id", referencedColumnName = "id"))
-    private Set<Publisher> publishers=new HashSet<>();
+    private List<Publisher> publishers=new ArrayList<>();
+
 
     public Integer getId() {
         return id;
@@ -42,12 +42,12 @@ public class Book1
         this.name = name;
     }
 
-    public Set<Publisher> getPublishers() {
+    public List<Publisher> getPublishers() {
         return publishers;
     }
 
 
-    public void setPublishers(Set<Publisher> publishers) {
+    public void setPublishers(List<Publisher> publishers) {
         this.publishers = publishers;
     }
 }

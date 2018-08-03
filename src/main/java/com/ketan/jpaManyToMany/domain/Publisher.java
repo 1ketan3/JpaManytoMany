@@ -15,8 +15,8 @@ public class Publisher
 
     private  String name;
 
-    @ManyToMany(mappedBy = "publishers",cascade = CascadeType.ALL)
-    private Set<Book1> book1=new HashSet<>();
+    @ManyToMany(mappedBy = "publishers",fetch=FetchType.LAZY)
+    private List<Book1> book1=new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -34,11 +34,11 @@ public class Publisher
         this.name = name;
     }
 
-    public Set<Book1> getBook1() {
+    public List<Book1> getBook1() {
         return book1;
     }
 
-    public void setBook1(Set<Book1> book1) {
+    public void setBook1(List<Book1> book1) {
         this.book1 = book1;
     }
 }
